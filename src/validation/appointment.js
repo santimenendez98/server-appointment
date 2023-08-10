@@ -14,7 +14,6 @@ const validateEdition = (req, res, next) => {
       .message({ "string.pattern.base": "Last Name should be only letters" }),
     clientID: Joi.string()
       .pattern(/^\d+|No Client$/)
-      .min(1)
       .messages({ "string.pattern.base": "Client ID should be only letters" })
       .required(),
     address: Joi.string().min(6),
