@@ -8,15 +8,9 @@ const createAppointment = (req, res) => {
     phone,
     address,
     date,
-    petName,
-    age,
-    sex,
-    breed,
-    kind,
-    color,
-    history,
     paidMonth,
     isClient,
+    pet,
   } = req.body;
 
   Appointment.create({
@@ -25,16 +19,10 @@ const createAppointment = (req, res) => {
     clientID,
     phone,
     address,
-    petName,
-    age,
-    sex,
-    breed,
-    kind,
-    color,
-    history,
     date,
     paidMonth,
     isClient,
+    pet,
   })
     .then((newAppointment) =>
       res.status(201).json({
@@ -56,19 +44,13 @@ const editAppointment = (req, res) => {
   const {
     name,
     lastName,
-    petName,
-    age,
-    sex,
-    breed,
-    kind,
-    color,
-    history,
     clientID,
     phone,
     address,
     date,
     paidMonth,
     isClient,
+    pet,
   } = req.body;
 
   Appointment.findByIdAndUpdate(
@@ -79,16 +61,10 @@ const editAppointment = (req, res) => {
       clientID,
       phone,
       address,
-      petName,
-      age,
-      sex,
-      breed,
-      kind,
-      color,
-      history,
       date,
       paidMonth,
       isClient,
+      pet,
     },
     { new: true }
   )
@@ -116,6 +92,7 @@ const editAppointment = (req, res) => {
 
 const getAllAppointment = (req, res) => {
   Appointment.find()
+    .populate("pet")
     .then((appointment) =>
       res.status(200).json({
         message: "All Appointment",
