@@ -16,7 +16,7 @@ const validateEdition = (req, res, next) => {
     color: Joi.string()
       .pattern(/^[A-Za-z\s]+$/)
       .message({ "string.pattern.base": "Color should be only letters" }),
-    history: Joi.string().min(1),
+    history: Joi.array().min(1),
   });
 
   const validation = validatePet.validate(req.body);
@@ -49,7 +49,7 @@ const validateCreation = (req, res, next) => {
       .pattern(/^[A-Za-z\s]+$/)
       .message({ "string.pattern.base": "Color should be only letters" })
       .required(),
-    history: Joi.string().min(1).required(),
+    history: Joi.Array().min(1).required(),
   });
 
   const validation = validatePet.validate(req.body);
